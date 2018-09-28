@@ -1,18 +1,19 @@
 module.exports = function check(str, bracketsConfig) {
 
   if (str.length % 2 !== 0) return false;
-  
-  const brackets = bracketsConfig.map(brackets => brackets.join(''));
 
+  let string = str;
   let newStr = '';
+  const brackets = bracketsConfig.map(brackets => brackets.join(''));
+  
 
-  while (newStr.length !== str.length) {
-    newStr = str;
-	  
-	for (let i = 0; i < brackets.length; i++) {
-	  str = str.replace(brackets[i], '');
-	}
+  while (newStr.length !== string.length) {
+    newStr = string;
+    
+    for (let i = 0, length = brackets.length; i < length; i++) {
+      string = string.replace(brackets[i], '');
+    }
   }
 
-  return str.length ? false : true;
+  return string.length ? false : true;
 }
